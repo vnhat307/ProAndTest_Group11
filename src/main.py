@@ -1,6 +1,6 @@
 # src/main.py
-from datetime import date, datetime
-from typing import List, Dict
+from datetime import date, datetime # for date handling
+from typing import List, Dict # for type hints
 
 from models.user import User
 from models.admin import Admin
@@ -31,12 +31,12 @@ def pause():
 
 
 def next_user_id() -> int:
-    return max((u.UserID for u in USERS), default=0) + 1
+    return max((u.UserID for u in USERS), default=0) + 1  #  create next UserID
 
 
-def find_user_by_email_role(email: str, role: str):
+def find_user_by_email_role(email: str, role: str): # find user by email and role
     return next((u for u in USERS if u.Email == email and u.Role == role), None)
-
+# next(...., None) returns None if no match found
 
 def pick_user() -> User:
     print("\n=== SELECT USER TYPE ===")
@@ -44,7 +44,7 @@ def pick_user() -> User:
     print("2) Teacher")
     print("3) Student")
     print("0) Exit")
-    c = input("Choose: ").strip()
+    c = input("Choose: ").strip() # .strip() removes leading/trailing spaces
     if c == "1":
         return admin
     if c == "2":
@@ -153,7 +153,7 @@ def teacher_menu(t: Teacher):
             if not BANK.Questions:
                 print("QuestionBank is empty, please add questions first.")
                 pause()
-                continue
+                continue # return to menu
             eid = (EXAMS[-1].ExamID + 1) if EXAMS else 1
             title = input("Exam title: ")
             e = Exam(eid, title, "", 10, date.today(), "draft", t.UserID)
@@ -277,7 +277,7 @@ def student_menu(s: Student):
 
     already_done = any(
         r for r in RESULTS if r.StudentID == s.StudentID and r.ExamID == exam.ExamID
-    )
+    ) # any(...) checks if any result matches
     if already_done:
         print("You have already taken this exam.")
         pause()

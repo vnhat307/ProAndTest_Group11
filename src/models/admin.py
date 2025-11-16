@@ -9,8 +9,8 @@ class Admin(User):
             user.Status = False
         elif action == "unlock":
             user.Status = True
-        if action == "edit":
-            user.UserName = kwargs.get("UserName", user.UserName)
+        if action == "edit": 
+            user.UserName = kwargs.get("UserName", user.UserName) # kwargs: keyword arguments
             user.Email = kwargs.get("Email", user.Email)
         if action == "add":
             pass  # Logic to add user would go here
