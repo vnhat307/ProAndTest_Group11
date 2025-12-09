@@ -8,7 +8,7 @@ class QuestionBank:
     TeacherID: int
     Questions: List[Question] = field(default_factory=list)
 
-    # AddQuestion()
+    # AadQuestion()
     def add_Question(self, question: Question) -> None:
         self.Questions.append(question)
         print(f"Question {question.QuestionID} added to bank {self.BankID}.")
